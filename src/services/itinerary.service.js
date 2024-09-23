@@ -154,7 +154,8 @@ const fetchLocationImage = async (location) => {
       if (response.data.hits.length > 0) {
         return { url: response.data.hits[0].largeImageURL };
       }
-    } else {
+    } else if (imageSource == 'UNSPLASH') {
+      // Fetch image from Unsplash
       response = await axios.get(process.env.UNSPLASH_ENDPOINT, {
         params: {
           query: location,
